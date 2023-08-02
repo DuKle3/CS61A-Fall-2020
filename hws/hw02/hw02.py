@@ -120,36 +120,30 @@ def make_repeater(func, n):
     5
     """
     "*** YOUR CODE HERE ***"
-    def f(x):
-        if n == 0:
-            return x
-        else:
-            tmp, k = func(x) , 1
-            while k < n:
-                tmp,k = func(tmp), k+1
-            return tmp
-    return f    
+    return accumulate(compose1, identity, n, lambda x: func)
 
-
-
+# 0f(x) = x
 def zero(f):
     return lambda x: x
 
 def successor(n):
     return lambda f: lambda x: f(n(f)(x))
-    # def h(f):
-    #   def g(x):
-    #       return f (n(f)(x))
-    #   return g
-    # return f
 
+# 1f(x) = f(x)
 def one(f):
     """Church numeral 1: same as successor(zero)"""
     "*** YOUR CODE HERE ***"
+    def fx(x):
+        return f(x)
+    return fx
 
+# 2f(x) = f(f(x))
 def two(f):
     """Church numeral 2: same as successor(successor(zero))"""
     "*** YOUR CODE HERE ***"
+    def fxx(x):
+        return f(f(x))
+    return fxx
 
 three = successor(two)
 
@@ -166,6 +160,7 @@ def church_to_int(n):
     3
     """
     "*** YOUR CODE HERE ***"
+    return n(increment)(0)
 
 def add_church(m, n):
     """Return the Church numeral for m + n, for Church numerals m and n.
@@ -174,6 +169,12 @@ def add_church(m, n):
     5
     """
     "*** YOUR CODE HERE ***"
+    k = 0
+    acc = m
+    while k < church_to_int(n):
+        acc = successor(acc)
+        k += 1
+    return acc 
 
 def mul_church(m, n):
     """Return the Church numeral for m * n, for Church numerals m and n.
@@ -185,6 +186,12 @@ def mul_church(m, n):
     12
     """
     "*** YOUR CODE HERE ***"
+    k = 0
+    acc = zero
+    while k < church_to_int(n):
+        acc = add_church(acc, m)
+        k += 1
+    return acc
 
 def pow_church(m, n):
     """Return the Church numeral m ** n, for Church numerals m and n.
@@ -195,4 +202,9 @@ def pow_church(m, n):
     9
     """
     "*** YOUR CODE HERE ***"
-
+    k = 0 
+    acc = one
+    while k < church_to_int(n):
+        acc = mul(acc, m)
+        k += 1
+    return acc
