@@ -1,3 +1,4 @@
 # CS61A
 
-2020 summer
+2020 fall edition
+
