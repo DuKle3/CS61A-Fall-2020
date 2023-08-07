@@ -354,6 +354,7 @@ def max_scoring_num_rolls(dice=six_sided, trials_count=1000):
             max_value = average_value
             max = i
         i -= 1
+        print(average_value)
     return max
     # END PROBLEM 9
 
@@ -396,7 +397,6 @@ def run_experiments():
         print('final_strategy win rate:', average_win_rate(final_strategy))
 
     "*** You may add additional experiments as you wish ***"
-
 
 
 def bacon_strategy(score, opponent_score, cutoff=8, num_rolls=6):
