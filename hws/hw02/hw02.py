@@ -176,4 +176,4 @@ def make_anonymous_factorial():
     # (lambda f: lambda x: f(f, x))(f)
     # fact = lambda x : 1 if x == 1 else mul(x, fact(sub(x, 1)))
 
-    return (lambda f: lambda x: f(f, x))(lambda f, x: 1 if x == 1 else mul(x, f(f, x-1)))
+    return (lambda f: lambda x: f(f, x))(lambda fact, x: 1 if x == 1 else x * fact(fact, x-1))
