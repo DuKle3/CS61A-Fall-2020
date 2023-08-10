@@ -102,6 +102,7 @@ def autocorrect(user_word, valid_words, diff_function, limit):
         return user_word
 
     word = min(valid_words, key=lambda x: diff_function(user_word, x, limit))
+
     if diff_function(user_word, word, limit) > limit:
         return user_word 
     else:
@@ -115,32 +116,58 @@ def shifty_shifts(start, goal, limit):
     their lengths.
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    if start and goal:
+        if start[0] == goal[0]:
+            return shifty_shifts(start[1:], goal[1:], limit) 
+        else:
+            if not limit:
+                return 1 
+            else:
+                return shifty_shifts(start[1:], goal[1:], limit - 1) + 1
+    return max(len(start), len(goal))
     # END PROBLEM 6
 
 
 def pawssible_patches(start, goal, limit):
     """A diff function that computes the edit distance from START to GOAL."""
-    assert False, 'Remove this line'
 
-    if ______________: # Fill in the condition
+    if not start or not goal:
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return max(len(start), len(goal)) 
         # END
 
-    elif ___________: # Feel free to remove or add additional cases
+    elif start[0] == goal[0]:
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return pawssible_patches(start[1:], goal[1:], limit)
         # END
 
     else:
-        add_diff = ... # Fill in these lines
-        remove_diff = ...
-        substitute_diff = ...
+        if not limit:
+            return 1
+        add_diff = pawssible_patches(start, goal[1:], limit - 1) + 1 # Fill in these lines
+        remove_diff = pawssible_patches(start[1:], goal, limit - 1) + 1
+        substitute_diff = pawssible_patches(start[1:], goal[1:], limit - 1) + 1
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return min(add_diff, remove_diff, substitute_diff)
         # END
 
+    """
+    # HINT 
+    # add_example 
+    # "ats" "cats"
+    # "ats" "ats" --> add "c" is equivalent to ignore goal[0]
+    #
+    # remove_example
+    # "dogs" "ogs"
+    # "ogs" "ogs"
+    #
+    # substitute_diff
+    # "hallo" "mallo"
+    # "allo"  "allo"  --> substituve is equivalent to ignore both [0]
+    """
 
 def final_diff(start, goal, limit):
     """A diff function. If you implement this function, it will be used."""
@@ -156,6 +183,15 @@ def report_progress(typed, prompt, user_id, send):
     """Send a report of your id and progress so far to the multiplayer server."""
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    count = 0
+    for i in range(len(typed)):
+        if typed[i] == prompt[i]:
+            count += 1
+        else:
+            break
+    progress = count / len(prompt)
+    send({'id': user_id, 'progress' : progress})
+    return progress
     # END PROBLEM 8
 
 
@@ -182,6 +218,10 @@ def time_per_word(times_per_player, words):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    times = []
+    for i in range( len(times_per_player) ):
+        times += [[times_per_player[i][j+1] - times_per_player[i][j] for j in range(len(words))]]
+    return game(words, times)
     # END PROBLEM 9
 
 
@@ -197,6 +237,22 @@ def fastest_words(game):
     word_indices = range(len(all_words(game)))    # contains an *index* for each word
     # BEGIN PROBLEM 10
     "*** YOUR CODE HERE ***"
+    fast_list, cmp_list = [], []
+    for i in word_indices:
+        each_word = []
+        for j in player_indices:
+            each_word += [all_times(game)[j][i]]
+        cmp_list += [min(each_word)]
+
+    for i in player_indices:
+        each_player = []
+        for j in word_indices:
+            if cmp_list[j] == all_times(game)[i][j]:
+                each_player += [word_at(game,j)]
+                cmp_list[j] += 1000 
+                
+        fast_list += [each_player]
+    return fast_list
     # END PROBLEM 10
 
 
