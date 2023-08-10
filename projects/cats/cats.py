@@ -238,12 +238,14 @@ def fastest_words(game):
     # BEGIN PROBLEM 10
     "*** YOUR CODE HERE ***"
     fast_list, cmp_list = [], []
+    "Build the list which store the min time for each word"
     for i in word_indices:
         each_word = []
         for j in player_indices:
             each_word += [all_times(game)[j][i]]
         cmp_list += [min(each_word)]
 
+    "Compare the plyer time with the min time"
     for i in player_indices:
         each_player = []
         for j in word_indices:
@@ -255,6 +257,22 @@ def fastest_words(game):
     return fast_list
     # END PROBLEM 10
 
+    "Another solution"
+    """
+    result = [[] for i in player_indices]
+    for i in word_indices:
+        for j in player_indices:
+            "initaliza"
+            if j == 0:
+                index = 0 
+                min_time = time(game, j, i)
+            each_time = time(game, j, i)
+            if each_time < min_time:
+                index = j 
+                min_time = each_time 
+        result[index] += [word_at(game, i)]
+    return result
+    """
 
 def game(words, times):
     """A data abstraction containing all words typed and their times."""
