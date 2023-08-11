@@ -105,4 +105,5 @@ def insert_items(lst, entry, elem):
                 i += 1
         except IndexError:
             return lst
+    # test
 
