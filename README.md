@@ -7,24 +7,37 @@ Contains homework, dicussion, lab, project. (with all option problems)
 ---
 
 ### Homework
-- [] hw01
-- [] hw02
-- [] hw03
-- [] hw04
+- [x] hw01
+- [x] hw02
+- [x] hw03
+- [x] hw04
+- [ ] hw05
+- [ ] hw06
+- [ ] hw07
+- [ ] hw08
+- [ ] hw09
 
 ### Discussion
 - TODO
 
 ### Lab 
-- [] lab00
-- [] lab01
-- [] lab02
-- [] lab04
-- [] lab05
-- [] lab06
-- [] lab07
+- [x] lab00
+- [x] lab01
+- [x] lab02
+- [x] lab04
+- [x] lab05
+- [x] lab06
+- [x] lab07
+- [ ] lab08
+- [ ] lab09
+- [ ] lab10
+- [ ] lab11
+- [ ] lab12
+- [ ] lab13
+- [ ] lab14
 
 ### Project 
-- [] Hog 
-- [] Cats
-- [] Ant
+- [x] Hog 
+- [x] Cats
+- [ ] Ant
+- [ ] Scheme
