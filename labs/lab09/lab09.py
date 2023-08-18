@@ -76,9 +76,22 @@ def num_trees(n):
     429
 
     """
+    # if n == 1:
+    #     return n
+    # return sum([num_trees(n - i) * num_trees(i) for i in range(1, n)])
     if n == 1:
-        return n
-    return sum([num_trees(n - i) * num_trees(i) for i in range(1, n)])
+        return 1 
+    total = 0
+    "先決定左右邊分別有幾個 leaves, and recursively call the function"
+    for nums_of_leaves_on_left in range(1, n):
+        nums_of_leaves_on_right = n - nums_of_leaves_on_left
+
+        tree_on_right = num_trees(nums_of_leaves_on_right)
+        tree_on_left = num_trees(nums_of_leaves_on_left)
+
+        total += tree_on_right * tree_on_left
+    return total
+
 
 
 
