@@ -11,11 +11,11 @@ Contains homework, dicussion, lab, project. (with all option problems)
 - [x] hw02
 - [x] hw03
 - [x] hw04
-- [ ] hw05
-- [ ] hw06
-- [ ] hw07
-- [ ] hw08
-- [ ] hw09
+- [x] hw05
+- [x] hw06
+- [x] hw07
+- [x] hw08
+- [x] hw09
 
 ### Discussion
 - TODO
@@ -28,16 +28,16 @@ Contains homework, dicussion, lab, project. (with all option problems)
 - [x] lab05
 - [x] lab06
 - [x] lab07
-- [ ] lab08
-- [ ] lab09
-- [ ] lab10
-- [ ] lab11
-- [ ] lab12
-- [ ] lab13
-- [ ] lab14
+- [x] lab08
+- [x] lab09
+- [x] lab10
+- [x] lab11
+- [x] lab12
+- [x] lab13
+- [x] lab14
 
 ### Project 
 - [x] Hog 
 - [x] Cats
-- [ ] Ant
-- [ ] Scheme
+- [x] Ant
+- [x] Scheme
